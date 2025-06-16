@@ -1,10 +1,13 @@
 // app/dashboard/page.tsx
 import React from 'react'
 
+// Ganti dengan dummy data agar halaman tidak 404
 async function getDashboardStats() {
-  const res = await fetch('https://api.umkm.com/admin/stats', { cache: 'no-store' })
-  if (!res.ok) throw new Error('Gagal mengambil statistik dashboard')
-  return res.json()
+  return {
+    produk: 123,
+    user: 45,
+    pelatihan: 7,
+  }
 }
 
 export default async function DashboardPage() {
