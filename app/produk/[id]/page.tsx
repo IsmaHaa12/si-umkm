@@ -1,35 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/produk/[id]/page.tsx
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
 import ProdukDetail from '@/components/ProdukDetail'
-import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
-const dummyProduk = [
-  {
-    id: '1',
-    namaProduk: 'Kopi Gayo',
-    deskripsiProduk: 'Kopi khas Aceh dengan aroma dan rasa kuat.',
-    harga: 35000,
-    gambar: '/placeholder.jpg',
-    kategori: 'Minuman',
-    pelaku: 'UMKM Gayo',
-    rating: 4,
-  },
-  {
-    id: '2',
-    namaProduk: 'Keripik Pisang',
-    deskripsiProduk: 'Cemilan renyah khas lokal.',
-    harga: 15000,
-    gambar: '/placeholder.jpg',
-    kategori: 'Cemilan',
-    pelaku: 'UMKM Pisang Jaya',
-    rating: 5,
-  },
-]
+export default function DetailProdukPage() {
+  const params = useParams()
+  const router = useRouter()
+  const [produk, setProduk] = useState<any | null>(null)
 
-export default function DetailProdukPage({ params }: { params: { id: string } }) {
-  const produk = dummyProduk.find((p) => p.id === params.id)
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('produk') || '[]')
+    const found = data.find((p: any) => p.id === params.id)
+    if (!found) {
+      router.push('/produk')
+    } else {
+      setProduk(found)
+    }
+  }, [params.id, router])
 
-  if (!produk) return notFound()
+  if (!produk) return <p className="text-center py-10 text-gray-500">Memuat produk...</p>
 
   return (
     <section className="py-12 px-4">
