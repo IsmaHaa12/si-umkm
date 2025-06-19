@@ -15,7 +15,11 @@ export default function LoginPage() {
     e.preventDefault()
 
     if (email === 'admin@umkm.com' && password === 'admin123') {
-      Cookies.set('token', 'dummy-jwt-token', { expires: 1 })
+      Cookies.set('token', 'dummy-jwt-token', {
+        expires: 1,
+        path: '/',
+        sameSite: 'lax'
+      })
       router.push('/dashboard')
     } else {
       setError('Email atau password salah')
