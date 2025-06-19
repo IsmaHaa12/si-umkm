@@ -7,10 +7,10 @@ import React, { useState, useEffect } from 'react'
 
 export default function ProfilePage() {
   const defaultProfile = {
-    nama: 'Siti Nur Aisyah',
-    email: 'aisyah@umkm.com',
+    nama: 'Admin',
+    email: 'admin@umkm.com',
     telepon: '081234567890',
-    alamat: 'Jl. Melati No. 5, Jakarta',
+    alamat: 'Jl. Ngawi Selatan No. 5, Jomokerto',
     foto: '/profile.jpg',
     bio: 'Pelaku UMKM bidang kuliner dengan spesialisasi makanan tradisional.'
   }
